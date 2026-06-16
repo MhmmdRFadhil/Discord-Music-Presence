@@ -23,6 +23,7 @@ class MusicTracker:
         self._cached_art_url = None
         self._fetch_start_time = None
         self._fetch_start_position = None
+        self.show_lyrics = True
 
     def run(self):
         self._running = True
@@ -67,7 +68,7 @@ class MusicTracker:
 
                 # Get current lyric
                 current_lyric = ""
-                if self._cached_lyrics:
+                if self._cached_lyrics and self.show_lyrics:
                     current_lyric = get_current_line(self._cached_lyrics, track["position"])
 
                 self.rpc.update(

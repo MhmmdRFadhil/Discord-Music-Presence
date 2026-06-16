@@ -11,7 +11,6 @@ logger = logging.getLogger(__name__)
 
 from config import DISCORD_CLIENT_ID
 
-
 class DiscordRPC:
     def __init__(self, client_id: str = DISCORD_CLIENT_ID):
         self.client_id = client_id
@@ -86,7 +85,7 @@ class DiscordRPC:
             if not self.connect():
                 return
 
-        details = f"{title} — {artist}"[:128]
+        details = f"{title} by {artist}"[:128]
         if current_lyric and current_lyric != "♪":
             state = current_lyric[:128]
         elif current_lyric == "♪":
@@ -124,12 +123,16 @@ class DiscordRPC:
                 "artist_ids": ["1"],
             },
             "flags": 48,
-"buttons": [
+            "buttons": [
                 {
-                    "label": "Listen to this song",
+                    "label": "Play on Apple Music",
                     "url": f"https://music.apple.com/search?term={_urlencode(title + ' ' + artist)}"
+                },
+                {
+                    "label": "Try it",
+                    "url": f"https://github.com/MhmmdRFadhil/Discord-Music-Presence"
                 }
-            ],
+            ]
         }
 
         payload = {
