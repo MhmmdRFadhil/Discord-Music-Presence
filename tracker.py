@@ -97,7 +97,7 @@ class MusicTracker:
                 lyrics_result[0] = fetch_lyrics(title, artist, album, duration)
 
             def do_art():
-                art_result[0] = get_album_art_url(title, artist)
+                art_result[0] = get_album_art_url(title, artist, album)
 
             t1 = threading.Thread(target=do_lyrics, daemon=True)
             t2 = threading.Thread(target=do_art, daemon=True)
